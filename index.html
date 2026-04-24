@@ -14,7 +14,6 @@
             color: #1e293b;
         }
 
-        /* Branding Colors based on The Training Network */
         .ttn-blue { background-color: #0060b4; }
         .ttn-blue-text { color: #0060b4; }
         
@@ -38,12 +37,6 @@
             transform: translateX(4px);
         }
 
-        .option-btn.selected {
-            border-color: #0060b4;
-            background-color: #0060b4;
-            color: white;
-        }
-
         .progress-bar {
             transition: width 0.4s ease-in-out;
         }
@@ -63,10 +56,10 @@
     <div class="max-w-2xl mx-auto">
         <!-- Header -->
         <header class="mb-10 text-center flex flex-col items-center">
-            <h1 class="text-3xl font-extrabold ttn-blue-text tracking-tight mb-2">
+            <h1 class="text-3xl font-extrabold ttn-blue-text tracking-tight mb-2 text-balance">
                 Conflict Management in General Practice
             </h1>
-            <p class="text-slate-500 font-medium uppercase tracking-widest text-xs">Self-Reflection Questionnaire</p>
+            <p class="text-slate-500 font-medium uppercase tracking-widest text-xs">Professional Self-Reflection</p>
             <div class="w-16 h-1 ttn-blue mt-4 rounded-full"></div>
         </header>
 
@@ -77,14 +70,13 @@
 
         <!-- Main Card -->
         <div id="app-container" class="card p-8 md:p-12 fade-in">
-            <!-- Content will be injected here -->
             <div id="intro-screen">
                 <h2 class="text-2xl font-bold mb-4 text-slate-800">Welcome</h2>
                 <p class="mb-6 leading-relaxed text-slate-600">
-                    This questionnaire helps you reflect on your personal approach to challenging patient interactions and conflict within primary care.
+                    This questionnaire helps you reflect on your personal approach to challenging patient interactions. There are no right or wrong answers.
                 </p>
                 <div class="bg-blue-50 p-5 rounded-lg border-l-4 border-blue-500 mb-8">
-                    <p class="text-sm text-slate-700"><strong>Note:</strong> There are no right or wrong answers. This tool is designed for your own professional development and reflection.</p>
+                    <p class="text-sm text-slate-700 font-medium">Your responses are used to provide personalized feedback and help focus your training on the areas that matter most to you.</p>
                 </div>
                 <button onclick="startSurvey()" class="w-full ttn-blue text-white font-bold py-4 px-8 rounded-lg hover:opacity-90 transition duration-300 shadow-lg shadow-blue-900/20">
                     Start Reflection
@@ -105,80 +97,80 @@
                 id: 1,
                 text: "When you think about challenging patient interactions, how would you describe your overall perception of them?",
                 options: [
-                    "They are a frustrating but unavoidable part of the job",
-                    "They are one of the most draining parts of my role and affect my day significantly",
-                    "They are difficult but I can usually see that something deeper is going on",
-                    "They feel personal and it is hard not to take them that way"
+                    { text: "They are a frustrating but unavoidable part of the job", type: "protective" },
+                    { text: "They are one of the most draining parts of my role and affect my day significantly", type: "protective" },
+                    { text: "They are difficult but I can usually see that something deeper is going on", type: "holistic" },
+                    { text: "They feel personal and it is hard not to take them that way", type: "protective" }
                 ]
             },
             {
                 id: 2,
                 text: "How confident do you currently feel when handling conflict with patients?",
                 options: [
-                    "Very confident — I feel well equipped",
-                    "Fairly confident — I manage but it is not easy",
-                    "Not very confident — I often feel unsure what to do",
-                    "Not confident at all — I find it really difficult"
+                    { text: "Very confident — I feel well equipped", type: "rational" },
+                    { text: "Fairly confident — I manage but it is not easy", type: "rational" },
+                    { text: "Not very confident — I often feel unsure what to do", type: "protective" },
+                    { text: "Not confident at all — I find it really difficult", type: "protective" }
                 ]
             },
             {
                 id: 3,
                 text: "When a patient becomes aggressive or demanding, what is your most common instinct?",
                 options: [
-                    "Stay calm and try to understand what is driving it",
-                    "Defend myself or explain the situation",
-                    "Try to fix it as quickly as possible",
-                    "Withdraw and wait for it to pass"
+                    { text: "Stay calm and try to understand what is driving it", type: "holistic" },
+                    { text: "Defend myself or explain the situation", type: "protective" },
+                    { text: "Try to fix it as quickly as possible", type: "rational" },
+                    { text: "Withdraw and wait for it to pass", type: "protective" }
                 ]
             },
             {
                 id: 4,
                 text: "When a patient is difficult, how often do you wonder what might be driving their behaviour beneath the surface?",
                 options: [
-                    "Almost always — I naturally look for the reason behind it",
-                    "Sometimes — it depends on the situation",
-                    "Rarely — I tend to focus on the behaviour itself",
-                    "Never — I just try to get through the interaction"
+                    { text: "Almost always — I naturally look for the reason behind it", type: "holistic" },
+                    { text: "Sometimes — it depends on the situation", type: "rational" },
+                    { text: "Rarely — I tend to focus on the behaviour itself", type: "protective" },
+                    { text: "Never — I just try to get through the interaction", type: "protective" }
                 ]
             },
             {
                 id: 5,
                 text: "How much do difficult patient interactions affect you after they have happened?",
                 options: [
-                    "Significantly — I often carry them home with me",
-                    "Moderately — they affect my mood but I move on reasonably quickly",
-                    "Slightly — I shake them off fairly easily",
-                    "Not at all — I leave them at the desk"
+                    { text: "Significantly — I often carry them home with me", type: "protective" },
+                    { text: "Moderately — they affect my mood but I move on reasonably quickly", type: "protective" },
+                    { text: "Slightly — I shake them off fairly easily", type: "rational" },
+                    { text: "Not at all — I leave them at the desk", type: "rational" }
                 ]
             },
             {
                 id: 6,
                 text: "When a patient is being difficult, what is your instinctive explanation for their behaviour?",
                 options: [
-                    "They are having a bad day",
-                    "Something deeper is probably going on beneath the surface",
-                    "They are just a difficult person",
-                    "I genuinely do not know — it is hard to tell"
+                    { text: "They are having a bad day", type: "rational" },
+                    { text: "Something deeper is probably going on beneath the surface", type: "holistic" },
+                    { text: "They are just a difficult person", type: "protective" },
+                    { text: "I genuinely do not know — it is hard to tell", type: "protective" }
                 ]
             },
             {
                 id: 7,
                 text: "How well equipped do you currently feel with practical tools to de-escalate difficult interactions?",
                 options: [
-                    "Very well equipped — I have a clear approach that works",
-                    "Fairly well equipped — I have some tools but not always sure which to use",
-                    "Not very well equipped — I tend to wing it",
-                    "Not equipped at all — I really struggle to know what to do"
+                    { text: "Very well equipped — I have a clear approach that works", type: "rational" },
+                    { text: "Fairly well equipped — I have some tools but not always sure which to use", type: "rational" },
+                    { text: "Not very well equipped — I tend to wing it", type: "protective" },
+                    { text: "Not equipped at all — I really struggle to know what to do", type: "protective" }
                 ]
             },
             {
                 id: 8,
                 text: "After a difficult interaction, how do you typically feel?",
                 options: [
-                    "Frustrated and drained",
-                    "Calm — I leave it at the desk",
-                    "Guilty — I wonder if I could have handled it better",
-                    "Unsettled — I replay it long after it has ended"
+                    { text: "Frustrated and drained", type: "protective" },
+                    { text: "Calm — I leave it at the desk", type: "rational" },
+                    { text: "Guilty — I wonder if I could have handled it better", type: "protective" },
+                    { text: "Unsettled — I replay it long after it has ended", type: "protective" }
                 ]
             }
         ];
@@ -207,12 +199,12 @@
 
             container.innerHTML = `
                 <div class="fade-in">
-                    <span class="text-xs font-bold ttn-blue-text uppercase tracking-widest block mb-2">Step ${currentStep + 1} of ${questions.length}</span>
+                    <span class="text-xs font-bold ttn-blue-text uppercase tracking-widest block mb-2">Reflect ${currentStep + 1} of ${questions.length}</span>
                     <h2 class="text-xl font-bold mb-8 text-slate-800">${question.text}</h2>
                     <div class="space-y-4">
                         ${question.options.map((opt, index) => `
-                            <button onclick="handleSelection('${opt.replace(/'/g, "\\'")}')" class="option-btn w-full p-5 rounded-xl font-medium text-slate-700 shadow-sm">
-                                ${opt}
+                            <button onclick="handleSelection('${opt.type}', '${opt.text.replace(/'/g, "\\'")}')" class="option-btn w-full p-5 rounded-xl font-medium text-slate-700 shadow-sm hover:shadow-md">
+                                ${opt.text}
                             </button>
                         `).join('')}
                     </div>
@@ -220,10 +212,11 @@
             `;
         }
 
-        window.handleSelection = (answer) => {
+        window.handleSelection = (type, answer) => {
             responses.push({
                 question: questions[currentStep].text,
-                answer: answer
+                answer: answer,
+                type: type
             });
             currentStep++;
             renderQuestion();
@@ -233,29 +226,61 @@
             updateProgress();
             const container = document.getElementById('app-container');
 
+            // Logic to determine dominant style
+            const counts = responses.reduce((acc, res) => {
+                acc[res.type] = (acc[res.type] || 0) + 1;
+                return acc;
+            }, {});
+
+            const dominantType = Object.keys(counts).reduce((a, b) => counts[a] > counts[b] ? a : b);
+
+            const feedbackData = {
+                rational: {
+                    title: "Proactive & Rational",
+                    desc: "You tend to focus on solving the problem or understanding the logic. While efficient, ensure you acknowledge the patient's emotions first."
+                },
+                protective: {
+                    title: "Reactive & Protective",
+                    desc: "Your instinct is to protect your professional boundaries or emotional energy. This is valid, but can sometimes escalate the patient's frustration."
+                },
+                holistic: {
+                    title: "Empathetic & Holistic",
+                    desc: "You naturally look for root causes. Your challenge is maintaining your own energy while absorbing the patient's stress."
+                }
+            };
+
+            const style = feedbackData[dominantType];
+
             container.innerHTML = `
-                <div class="fade-in text-center py-4">
-                    <div class="mb-6 flex justify-center">
-                        <div class="rounded-full bg-green-100 p-4">
-                            <svg class="w-12 h-12 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                <div class="fade-in">
+                    <div class="text-center mb-8">
+                        <div class="inline-flex items-center justify-center rounded-full bg-blue-100 p-4 mb-4">
+                            <svg class="w-8 h-8 ttn-blue-text" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
                             </svg>
                         </div>
+                        <h2 class="text-2xl font-bold text-slate-800">Your Reflection Profile</h2>
+                        <p class="text-slate-500 mt-1">Based on your instinctive responses</p>
                     </div>
-                    <h2 class="text-2xl font-bold mb-4 text-slate-800">Reflection Complete</h2>
-                    <p class="text-slate-600 mb-8 max-w-md mx-auto leading-relaxed">
-                        Thank you for completing this assessment. Acknowledging your natural instincts is the first step toward effective conflict management.
-                    </p>
                     
-                    <div class="bg-blue-50 border border-blue-100 rounded-2xl p-8 text-left mb-10 shadow-inner">
-                        <h3 class="font-bold mb-4 ttn-blue-text uppercase tracking-wider text-sm">Professional Insight</h3>
-                        <p class="text-slate-700 leading-relaxed italic">
-                            "By identifying how you currently perceive and react to conflict, you've laid the groundwork for growth. Whether you feel confident or challenged, your commitment to self-reflection will directly improve your resilience and patient outcomes."
+                    <div class="bg-blue-50 border-2 border-blue-100 rounded-2xl p-8 mb-8 shadow-sm">
+                        <div class="flex items-center gap-2 mb-3">
+                            <span class="w-3 h-3 rounded-full ttn-blue"></span>
+                            <h3 class="font-bold text-lg ttn-blue-text">${style.title}</h3>
+                        </div>
+                        <p class="text-slate-700 leading-relaxed mb-6">
+                            ${style.desc}
                         </p>
+                        <div class="border-t border-blue-200 pt-6 mt-6">
+                            <h4 class="font-bold text-sm text-blue-900 uppercase tracking-wide mb-2">Building Your Skills</h4>
+                            <p class="text-slate-600 text-sm leading-relaxed">
+                                In our upcoming lesson, we will be building on these natural instincts. You will learn specific de-escalation tools designed to balance problem-solving with emotional intelligence, helping you manage conflict while protecting your well-being.
+                            </p>
+                        </div>
                     </div>
 
-                    <div class="flex flex-col gap-4">
-                        <button onclick="location.reload()" class="text-slate-500 font-medium hover:text-slate-800 transition-colors text-sm">
+                    <div class="text-center">
+                        <button onclick="location.reload()" class="text-slate-400 hover:text-slate-600 font-medium text-sm transition-colors">
                             Restart Assessment
                         </button>
                     </div>
