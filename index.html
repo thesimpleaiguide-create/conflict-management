@@ -3,43 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Starting Point</title>
+    <title>Where Are You Starting From?</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
         
-        /* Eliminate scrolling for embed environments */
         html, body {
             height: 100%;
             overflow: hidden;
             margin: 0;
             padding: 0;
-            background-color: #f8fafc;
+            background-color: #ffffff; /* Clean white background for the embed */
         }
 
         body {
             font-family: 'Inter', sans-serif;
             color: #1e293b;
             display: flex;
-            align-items: flex-start; /* Aligned to top to reduce initial gaps */
+            align-items: flex-start;
             justify-content: center;
         }
 
+        /* Color Palette from Image */
         .brand-navy { color: #0C2340; }
         .brand-navy-bg { background-color: #0C2340; }
         .trust-blue { color: #005EB8; }
         .trust-blue-bg { background-color: #005EB8; }
-        
-        .card {
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
-        }
+        .light-blue-bg { background-color: #E9F1F9; }
+        .text-grey { color: #526071; }
 
         .option-btn {
             transition: all 0.2s ease;
             text-align: left;
-            border: 2px solid #f1f5f9;
+            border: 1px solid #e2e8f0;
             background-color: #ffffff;
         }
 
@@ -62,42 +58,45 @@
         }
     </style>
 </head>
-<body class="p-2 md:p-4">
+<body class="p-0">
 
-    <div class="w-full max-w-2xl mx-auto flex flex-col h-full max-h-screen">
-        <!-- Header: Minimal vertical space -->
-        <header class="mb-2 text-center flex flex-col items-center flex-shrink-0">
-            <h1 class="text-2xl font-extrabold brand-navy tracking-tight">
-                Your Starting Point
-            </h1>
-            <p class="text-[13px] brand-navy font-medium opacity-90 mb-2 leading-tight">
-                This is an honest snapshot. No judgement. Just your starting point.
-            </p>
-            <div class="w-12 h-1 trust-blue-bg rounded-full"></div>
-        </header>
-
-        <!-- Progress Bar: Reduced bottom margin -->
-        <div class="w-full bg-gray-200 rounded-full h-1 mb-2 flex-shrink-0">
-            <div id="progress" class="trust-blue-bg h-1 rounded-full progress-bar" style="width: 0%"></div>
-        </div>
-
-        <!-- Main Card: Removed justify-center to close the gap -->
-        <div id="app-container" class="card p-5 md:p-8 flex-grow overflow-hidden flex flex-col">
-            <div id="intro-screen" class="fade-in">
-                <p class="mb-4 text-sm leading-relaxed text-slate-600">
-                    The questions below are about how you currently handle difficult patient interactions. They are not how you <em>think</em> you should handle them.
-                </p>
-                <div class="bg-blue-50/50 p-4 rounded-lg mb-6">
-                    <p class="text-xs text-slate-700 font-medium mb-2">
-                        Answer honestly. Your score simply gives us a snapshot of where you are today.
+    <!-- Main Container: Styled as the light blue block in your image -->
+    <div class="w-full h-full light-blue-bg p-6 md:p-10 flex flex-col overflow-hidden">
+        
+        <div class="w-full max-w-2xl mx-auto flex flex-col h-full">
+            
+            <!-- App Content Area -->
+            <div id="app-container" class="flex-grow flex flex-col">
+                
+                <!-- Intro Screen (Styled exactly like your image) -->
+                <div id="intro-screen" class="fade-in text-left">
+                    <h1 class="text-3xl md:text-4xl font-extrabold brand-navy tracking-tight mb-2">
+                        Where Are You Starting From?
+                    </h1>
+                    <p class="text-lg md:text-xl brand-navy font-bold italic mb-6 opacity-90">
+                        An honest snapshot. No judgement. Just your starting point.
                     </p>
-                    <p class="text-xs text-slate-600 italic">
-                        At the end of this module, you will see exactly how far you have come.
-                    </p>
+                    
+                    <div class="space-y-4 text-grey leading-relaxed text-sm md:text-base mb-8">
+                        <p>Before we go any further, we want to understand where you are today.</p>
+                        <p>
+                            The questions below are about how you currently handle difficult patient interactions. They are not how you <strong>think</strong> you should handle them, or how you <strong>hope</strong> to handle them after this training.
+                        </p>
+                        <p>Answer honestly. There are no right or wrong answers. This is just for <strong>you</strong>.</p>
+                        <p>
+                            At the end of this module, you will take this questionnaire again. It will show you <strong>how far you have come</strong>.
+                        </p>
+                    </div>
+
+                    <button onclick="startSurvey()" class="inline-block brand-navy-bg text-white font-bold py-3 px-8 rounded-md hover:opacity-90 transition duration-300 shadow-md">
+                        Start Reflection
+                    </button>
                 </div>
-                <button onclick="startSurvey()" class="w-full trust-blue-bg text-white font-bold py-3 px-6 rounded-lg hover:opacity-90 transition duration-300 shadow-md">
-                    Start Reflection
-                </button>
+            </div>
+
+            <!-- Progress Bar (Visible during questions) -->
+            <div id="progress-container" class="hidden w-full bg-slate-200 rounded-full h-1 mt-6 flex-shrink-0">
+                <div id="progress" class="trust-blue-bg h-1 rounded-full progress-bar" style="width: 0%"></div>
             </div>
         </div>
     </div>
@@ -190,6 +189,7 @@
         let responses = [];
 
         window.startSurvey = () => {
+            document.getElementById('progress-container').classList.remove('hidden');
             renderQuestion();
         };
 
@@ -209,12 +209,12 @@
             updateProgress();
 
             container.innerHTML = `
-                <div class="fade-in">
+                <div class="fade-in flex flex-col h-full">
                     <span class="text-[10px] font-bold trust-blue uppercase tracking-widest block mb-1">Reflect ${currentStep + 1} of ${questions.length}</span>
-                    <h2 class="text-lg font-bold mb-4 brand-navy leading-tight">${question.text}</h2>
-                    <div class="space-y-2">
+                    <h2 class="text-xl font-bold mb-6 brand-navy leading-tight">${question.text}</h2>
+                    <div class="space-y-3">
                         ${question.options.map((opt, index) => `
-                            <button onclick="handleSelection('${opt.type}', '${opt.text.replace(/'/g, "\\'")}')" class="option-btn w-full p-3 rounded-lg text-sm font-medium text-slate-700 shadow-sm">
+                            <button onclick="handleSelection('${opt.type}', '${opt.text.replace(/'/g, "\\'")}')" class="option-btn w-full p-4 rounded-lg text-sm md:text-base font-medium text-slate-700 shadow-sm">
                                 ${opt.text}
                             </button>
                         `).join('')}
@@ -232,6 +232,7 @@
         function renderCompletion() {
             updateProgress();
             const container = document.getElementById('app-container');
+            document.getElementById('progress-container').classList.add('hidden');
 
             const counts = responses.reduce((acc, res) => {
                 acc[res.type] = (acc[res.type] || 0) + 1;
@@ -258,19 +259,23 @@
             const style = feedbackData[dominantType];
 
             container.innerHTML = `
-                <div class="fade-in text-center">
-                    <h3 class="font-bold text-sm trust-blue uppercase mb-2 tracking-wide">${style.title}</h3>
-                    <p class="text-sm text-slate-700 leading-relaxed mb-4">${style.desc}</p>
+                <div class="fade-in flex flex-col justify-center h-full text-left">
+                    <h2 class="text-2xl font-bold brand-navy mb-4">Your Reflection Profile</h2>
                     
-                    <div class="border-t border-blue-100 pt-4 text-left">
-                        <h4 class="font-bold text-xs brand-navy uppercase mb-1">Building Your Skills</h4>
-                        <p class="text-xs text-slate-500 leading-tight">
+                    <div class="bg-white/80 border border-white rounded-xl p-6 mb-6 shadow-sm">
+                        <h3 class="font-bold text-lg trust-blue uppercase mb-2 tracking-wide">${style.title}</h3>
+                        <p class="text-base text-slate-700 leading-relaxed">${style.desc}</p>
+                    </div>
+                    
+                    <div class="border-t border-navy/10 pt-6">
+                        <h4 class="font-bold text-sm brand-navy uppercase mb-2">Building Your Skills</h4>
+                        <p class="text-sm text-grey leading-relaxed">
                             In our upcoming lesson, we will learn specific de-escalation tools to balance problem-solving with emotional intelligence.
                         </p>
                     </div>
 
-                    <button onclick="location.reload()" class="mt-4 text-slate-400 hover:text-slate-600 font-medium text-[10px] transition-colors">
-                        Restart
+                    <button onclick="location.reload()" class="mt-8 text-slate-400 hover:text-slate-600 font-medium text-xs transition-colors">
+                        Restart Assessment
                     </button>
                 </div>
             `;
