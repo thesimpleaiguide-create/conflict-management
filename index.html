@@ -14,8 +14,8 @@
             color: #1e293b;
         }
 
-        .ttn-blue { background-color: #0060b4; }
-        .ttn-blue-text { color: #0060b4; }
+        .primary-blue { background-color: #0060b4; }
+        .primary-blue-text { color: #0060b4; }
         
         .card {
             background: white;
@@ -51,25 +51,24 @@
         }
     </style>
 </head>
-<body class="p-4 md:p-12">
+<body class="p-4 md:p-6">
 
     <div class="max-w-2xl mx-auto">
         <!-- Header -->
-        <header class="mb-10 text-center flex flex-col items-center">
-            <h1 class="text-3xl font-extrabold ttn-blue-text tracking-tight mb-2 text-balance">
+        <header class="mb-6 text-center flex flex-col items-center">
+            <h1 class="text-2xl font-extrabold primary-blue-text tracking-tight mb-2 text-balance">
                 Conflict Management in General Practice
             </h1>
-            <p class="text-slate-500 font-medium uppercase tracking-widest text-xs">Professional Self-Reflection</p>
-            <div class="w-16 h-1 ttn-blue mt-4 rounded-full"></div>
+            <div class="w-16 h-1 primary-blue rounded-full"></div>
         </header>
 
         <!-- Progress Bar -->
-        <div class="w-full bg-gray-200 rounded-full h-2 mb-8">
-            <div id="progress" class="ttn-blue h-2 rounded-full progress-bar" style="width: 0%"></div>
+        <div class="w-full bg-gray-200 rounded-full h-1.5 mb-6">
+            <div id="progress" class="primary-blue h-1.5 rounded-full progress-bar" style="width: 0%"></div>
         </div>
 
         <!-- Main Card -->
-        <div id="app-container" class="card p-8 md:p-12 fade-in">
+        <div id="app-container" class="card p-6 md:p-10 fade-in">
             <div id="intro-screen">
                 <h2 class="text-2xl font-bold mb-4 text-slate-800">Welcome</h2>
                 <p class="mb-6 leading-relaxed text-slate-600">
@@ -78,17 +77,11 @@
                 <div class="bg-blue-50 p-5 rounded-lg border-l-4 border-blue-500 mb-8">
                     <p class="text-sm text-slate-700 font-medium">Your responses are used to provide personalized feedback and help focus your training on the areas that matter most to you.</p>
                 </div>
-                <button onclick="startSurvey()" class="w-full ttn-blue text-white font-bold py-4 px-8 rounded-lg hover:opacity-90 transition duration-300 shadow-lg shadow-blue-900/20">
+                <button onclick="startSurvey()" class="w-full primary-blue text-white font-bold py-4 px-8 rounded-lg hover:opacity-90 transition duration-300 shadow-lg shadow-blue-900/20">
                     Start Reflection
                 </button>
             </div>
         </div>
-
-        <!-- Footer -->
-        <footer class="mt-16 text-center text-sm text-slate-400">
-            <p class="font-semibold text-slate-500 mb-1">The Training Network</p>
-            <p>thetrainingnet.com</p>
-        </footer>
     </div>
 
     <script type="module">
@@ -199,7 +192,7 @@
 
             container.innerHTML = `
                 <div class="fade-in">
-                    <span class="text-xs font-bold ttn-blue-text uppercase tracking-widest block mb-2">Reflect ${currentStep + 1} of ${questions.length}</span>
+                    <span class="text-xs font-bold primary-blue-text uppercase tracking-widest block mb-2">Reflect ${currentStep + 1} of ${questions.length}</span>
                     <h2 class="text-xl font-bold mb-8 text-slate-800">${question.text}</h2>
                     <div class="space-y-4">
                         ${question.options.map((opt, index) => `
@@ -226,13 +219,12 @@
             updateProgress();
             const container = document.getElementById('app-container');
 
-            // Logic to determine dominant style
             const counts = responses.reduce((acc, res) => {
                 acc[res.type] = (acc[res.type] || 0) + 1;
                 return acc;
             }, {});
 
-            const dominantType = Object.keys(counts).reduce((a, b) => counts[a] > counts[b] ? a : b);
+            const dominantType = Object.keys(counts).reduce((a, b) => (counts[a] || 0) > (counts[b] || 0) ? a : b);
 
             const feedbackData = {
                 rational: {
@@ -255,7 +247,7 @@
                 <div class="fade-in">
                     <div class="text-center mb-8">
                         <div class="inline-flex items-center justify-center rounded-full bg-blue-100 p-4 mb-4">
-                            <svg class="w-8 h-8 ttn-blue-text" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg class="w-8 h-8 primary-blue-text" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
                             </svg>
                         </div>
@@ -265,8 +257,8 @@
                     
                     <div class="bg-blue-50 border-2 border-blue-100 rounded-2xl p-8 mb-8 shadow-sm">
                         <div class="flex items-center gap-2 mb-3">
-                            <span class="w-3 h-3 rounded-full ttn-blue"></span>
-                            <h3 class="font-bold text-lg ttn-blue-text">${style.title}</h3>
+                            <span class="w-3 h-3 rounded-full primary-blue"></span>
+                            <h3 class="font-bold text-lg primary-blue-text">${style.title}</h3>
                         </div>
                         <p class="text-slate-700 leading-relaxed mb-6">
                             ${style.desc}
